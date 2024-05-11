@@ -14,4 +14,9 @@ class UserRepository
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function login(string $email)
+    {
+        return User::firstWhere('email', $email);
+    }
 }

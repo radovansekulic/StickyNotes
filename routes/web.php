@@ -20,7 +20,7 @@ Route::view('login', 'login')->name('signIn');
 
 Route::controller(UserController::class)->group(function () {
     Route::post('register', 'createUser')->name('createUser');
-    Route::post('login', 'selectUser')->name('selectUser');
+    Route::post('login', 'loginUser')->name('loginUser');
 });
 
 Route::group(['middleware' => 'auth'], function () {
