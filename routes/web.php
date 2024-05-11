@@ -14,19 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('register', function () {
-    return view('register');
-})->name('signUp');
-
-Route::get('login', function () {
-    return view('login');
-})->name('signIn');
+Route::view('/', 'welcome')->name('welcome');
+Route::view('register', 'register')->name('signUp');
+Route::view('login', 'login')->name('signIn');
 
 Route::controller(UserController::class)->group(function () {
     Route::post('register', 'createUser')->name('createUser');
     Route::post('login', 'selectUser')->name('selectUser');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::view('dashboard','dashboard')->name('dashboard');
 });
