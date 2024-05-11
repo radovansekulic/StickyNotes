@@ -49,7 +49,7 @@
 
         <p class="mt-10 text-center text-sm text-gray-500">
             Already have an account?
-            <a href="#" class="font-semibold leading-6 text-blue-600 hover:text-blue-500">Log In</a>
+            <a href="{{ route('signIn') }}" class="font-semibold leading-6 text-blue-600 hover:text-blue-500">Log In</a>
         </p>
     </div>
 </div>
