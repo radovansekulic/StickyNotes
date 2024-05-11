@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,8 @@ Route::get('register', function () {
 Route::get('login', function () {
     return view('login');
 })->name('signIn');
+
+Route::controller(UserController::class)->group(function () {
+    Route::post('register', 'createUser')->name('createUser');
+    Route::post('login', 'selectUser')->name('selectUser');
+});

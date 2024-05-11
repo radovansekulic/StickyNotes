@@ -17,25 +17,35 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="#" method="POST">
+        <form class="space-y-6" action="{{ route('createUser') }}" method="POST">
+            @csrf
             <div>
                 <div class="mt-2">
                     <input id="name" name="name" type="text" autocomplete="name" placeholder="Nickname" required
-                           class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">
+                           class="block w-full rounded-md border-0 mb-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">
+                    @if ($errors->has('name'))
+                        <span class="text-red-500">{{ $errors->first('name') }}</span>
+                    @endif
                 </div>
             </div>
 
             <div>
-                <div class="mt-2">
+                <div class="mb-2">
                     <input id="email" name="email" type="email" autocomplete="email" placeholder="Email address" required
                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">
+                    @if ($errors->has('email'))
+                        <span class="text-red-500">{{ $errors->first('email') }}</span>
+                    @endif
                 </div>
             </div>
 
             <div>
-                <div class="mt-2">
+                <div class="mb-2">
                     <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Password" required
                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6">
+                    @if ($errors->has('password'))
+                        <span class="text-red-500">{{ $errors->first('password') }}</span>
+                    @endif
                 </div>
             </div>
 
