@@ -21,8 +21,10 @@ Route::view('login', 'login')->name('signIn');
 Route::controller(UserController::class)->group(function () {
     Route::post('register', 'createUser')->name('createUser');
     Route::post('login', 'loginUser')->name('loginUser');
+    Route::post('logout', 'logout')->name('logout');
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'access'], function () {
     Route::view('dashboard','dashboard')->name('dashboard');
+    Route::view('profile','profile')->name('profile');
 });

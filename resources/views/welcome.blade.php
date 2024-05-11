@@ -36,8 +36,14 @@
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <a href="{{ route('signIn') }}" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
-                        aria-hidden="true">&rarr;</span></a>
+                @if (Auth::check())
+                    <a href="{{ route('dashboard') }}"
+                       class="text-sm font-semibold leading-6 text-gray-900">{{ Auth::user()->name }} <span
+                            aria-hidden="true">&rarr;</span></a>
+                @else
+                    <a href="{{ route('signIn') }}" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
+                            aria-hidden="true">&rarr;</span></a>
+                @endif
             </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
@@ -94,7 +100,8 @@
             <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                 <div
                     class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    Announcing our next round of funding. <a href="{{ route('signUp') }}" class="font-semibold text-blue-600"><span
+                    Announcing our next round of funding. <a href="{{ route('signUp') }}"
+                                                             class="font-semibold text-blue-600"><span
                             class="absolute inset-0" aria-hidden="true"></span>Read more <span
                             aria-hidden="true">&rarr;</span></a>
                 </div>
@@ -109,7 +116,8 @@
                     <a href="{{ route('signUp') }}"
                        class="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Get
                         started</a>
-                    <a href="{{ route('signUp') }}" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span
+                    <a href="{{ route('signUp') }}" class="text-sm font-semibold leading-6 text-gray-900">Learn more
+                        <span
                             aria-hidden="true">→</span></a>
                 </div>
             </div>
