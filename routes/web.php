@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,4 +28,10 @@ Route::controller(UserController::class)->group(function () {
 Route::group(['middleware' => 'access'], function () {
     Route::view('dashboard','dashboard')->name('dashboard');
     Route::view('profile','profile')->name('profile');
+
+    Route::controller(NoteController::class)->group(function () {
+        Route::post('create/{userId}', 'createNote')->name('createNote');
+        Route::post('update/{noteId}', 'deleteNote')->name('deleteNote');
+        Route::post('delete/{noteId}', 'updateNote')->name('updateNote');
+    });
 });
