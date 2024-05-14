@@ -25,4 +25,12 @@ class UserRepository
         $user = User::firstWhere('email', $email);
         return $user->id;
     }
+
+    public function updateUser($userId, array $data)
+    {
+        return User::where('id', $userId)->update([
+            'email' => $data['newEmail'],
+            'name' => $data['name'],
+        ]);
+    }
 }

@@ -28,6 +28,18 @@ class UserController extends Controller
         return redirect(route('dashboard', ['userId' => $userId]));
     }
 
+    public function updateProfile(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'newEmail' => 'required|email'
+        ]);
+
+        $userId = $this->userRepository->getUser($request->newEmail);
+        $this->userRepository->updateUser($userId, $validatedData);
+        return redirect(route('profile', ['userId' => $userId]));
+    }
+
     public function loginUser(Request $request)
     {
         $request->validate([
