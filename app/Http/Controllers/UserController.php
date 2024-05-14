@@ -24,7 +24,8 @@ class UserController extends Controller
 
         $user = $this->userRepository->register($validatedData);
         Auth::login($user);
-        return redirect(route('dashboard'));
+        $userId = $this->userRepository->getUser($request->email);
+        return redirect(route('dashboard', ['userId' => $userId]));
     }
 
     public function loginUser(Request $request)
@@ -35,10 +36,11 @@ class UserController extends Controller
         ]);
 
         $user = $this->userRepository->login($request->email);
+        $userId = $this->userRepository->getUser($request->email);
 
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
-            return redirect()->route('dashboard');
+            return redirect(route('dashboard', ['userId' => $userId]));
         } else {
             return redirect(route('signIn'))->withErrors([
                 'error' => 'The provided credentials do not match our records.',

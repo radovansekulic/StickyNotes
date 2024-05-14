@@ -19,4 +19,10 @@ class UserRepository
     {
         return User::firstWhere('email', $email);
     }
+
+    public function getUser(string $email)
+    {
+        $user = User::firstWhere('email', $email);
+        return $user->id;
+    }
 }

@@ -26,12 +26,11 @@ Route::controller(UserController::class)->group(function () {
 });
 
 Route::group(['middleware' => 'access'], function () {
-    Route::view('dashboard','dashboard')->name('dashboard');
-    Route::view('profile','profile')->name('profile');
-
     Route::controller(NoteController::class)->group(function () {
+        Route::get('dashboard/{userId}', 'index')->name('dashboard');
+        Route::get('profile/{userId}', 'profile')->name('profile');
         Route::post('create/{userId}', 'createNote')->name('createNote');
-        Route::post('update/{noteId}', 'deleteNote')->name('deleteNote');
-        Route::post('delete/{noteId}', 'updateNote')->name('updateNote');
+        Route::post('update/{noteId}', 'updateNote')->name('updateNote');
+        Route::post('delete/{noteId}', 'deleteNote')->name('deleteNote');
     });
 });
