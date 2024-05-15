@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <title>Sticky Notes</title>
 </head>
-<form>
     <div class="min-h-full">
         @include('components.header')
 

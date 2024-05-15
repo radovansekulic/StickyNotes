@@ -35,7 +35,7 @@ class UserController extends Controller
             'newEmail' => 'required|email'
         ]);
 
-        $userId = $this->userRepository->getUser($request->newEmail);
+        $userId = $request->userId;
         $this->userRepository->updateUser($userId, $validatedData);
         return redirect(route('profile', ['userId' => $userId]));
     }
@@ -52,7 +52,11 @@ class UserController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
-            return redirect(route('dashboard', ['userId' => $userId]));
+            if ($user->id == 1) {
+                return redirect(route('adminDashboard', ['userId' => $userId]));
+            } else {
+                return redirect(route('dashboard', ['userId' => $userId]));
+            }
         } else {
             return redirect(route('signIn'))->withErrors([
                 'error' => 'The provided credentials do not match our records.',

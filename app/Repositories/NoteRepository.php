@@ -29,4 +29,9 @@ class NoteRepository
     {
         return Note::destroy($noteId);
     }
+
+    public function getAllNotes()
+    {
+        return Note::all();
+    }
 }

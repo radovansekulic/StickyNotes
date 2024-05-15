@@ -48,4 +48,10 @@ class NoteController extends Controller
         $this->noteRepository->delete($noteId);
         return redirect(route('dashboard', ['userId' => $userId]));
     }
+
+    public function admin()
+    {
+        $notes = $this->noteRepository->getAllNotes();
+        return view('admin', ['notes' => $notes]);
+    }
 }

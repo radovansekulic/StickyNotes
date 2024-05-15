@@ -35,3 +35,7 @@ Route::group(['middleware' => 'access'], function () {
         Route::post('delete/{noteId}', 'deleteNote')->name('deleteNote');
     });
 });
+
+Route::get('admin', [NoteController::class, 'admin'])
+    ->name('adminDashboard')
+    ->middleware('can:access-admin');
