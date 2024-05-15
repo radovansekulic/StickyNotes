@@ -15,7 +15,7 @@
         <header class="bg-white">
             <div class="mx-auto max-w-7xl px-4 py-6 mt-10 sm:px-6 lg:px-8">
                 <h1 class="text-4xl font-bold tracking-tight text-gray-900">
-                    All Notes 
+                    All Notes
                 </h1>
             </div>
         </header>
@@ -45,7 +45,7 @@
                         @csrf
                         <input class="text-yellow-950" name="note" value="{{ $note->note }}">
                     </form>
-                    <p class="text-yellow-950 mt-5">{{ $note->created_at }}</p>
+                    <p class="text-yellow-950 mt-5 border-none">{{ $note->created_at }}</p>
                 </div>
             @endforeach
         </div>

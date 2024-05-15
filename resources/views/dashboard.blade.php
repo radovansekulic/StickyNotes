@@ -167,7 +167,7 @@
                     <form id="form" action="{{ route('updateNote', ['userId' => $note->user_id, 'noteId' => $note->id]) }}"
                           method="post">
                         @csrf
-                        <input class="text-yellow-950" name="note" value="{{ $note->note }}">
+                        <input class="text-yellow-950 border-none" name="note" value="{{ $note->note }}">
                     </form>
                     <p class="text-yellow-950 mt-5">{{ $note->created_at }}</p>
                 </div>
