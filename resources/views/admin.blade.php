@@ -24,7 +24,10 @@
                 <div class="bg-yellow-400 md:w-1/3 p-4 m-5">
                     <div class="flex justify-between items-center mb-5">
                         <div>
-                            {{ Auth::user()->name }}
+                            @php
+                                $user = \App\Models\User::find($note->user_id);
+                            @endphp
+                            {{ $user->name }}
                         </div>
                         <div class="flex gap-2">
                             <input type="button" id="submit"
@@ -43,7 +46,7 @@
                     <form id="form" action="{{ route('updateNote', ['userId' => $note->user_id, 'noteId' => $note->id]) }}"
                           method="post">
                         @csrf
-                        <input class="text-yellow-950" name="note" value="{{ $note->note }}">
+                        <input class="text-yellow-950 border-none" name="note" value="{{ $note->note }}">
                     </form>
                     <p class="text-yellow-950 mt-5 border-none">{{ $note->created_at }}</p>
                 </div>

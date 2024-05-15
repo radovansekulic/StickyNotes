@@ -38,7 +38,12 @@ class NoteController extends Controller
         $userId = $request->userId;
         $validatedData['noteId'] = $noteId;
         $this->noteRepository->update($validatedData);
-        return redirect(route('dashboard', ['userId' => $userId]));
+
+        if ($userId == 1) {
+            return redirect(route('adminDashboard', ['userId' => $userId]));
+        } else {
+            return redirect(route('dashboard', ['userId' => $userId]));
+        }
     }
 
     public function deleteNote(Request $request)
@@ -46,7 +51,12 @@ class NoteController extends Controller
         $noteId = $request->noteId;
         $userId = $request->userId;
         $this->noteRepository->delete($noteId);
-        return redirect(route('dashboard', ['userId' => $userId]));
+
+        if ($userId == 1) {
+            return redirect(route('adminDashboard', ['userId' => $userId]));
+        } else {
+            return redirect(route('dashboard', ['userId' => $userId]));
+        }
     }
 
     public function admin()
